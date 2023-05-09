@@ -1,38 +1,38 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, test } from 'vitest';
 
 import { HttpError, ValidationError } from './errors';
 
 describe('class HttpError', () => {
   it('should contain the provided status code, message and data', () => {
-    const testStatus = 1;
-    const testMessage = 'Test';
-    const testData = { key: 'test' };
+    const testStatusCode =202;
+    const testMsg = "test msg";
+    const testdata = {key : 'test'}
 
-    const testError = new HttpError(testStatus, testMessage, testData);
+    const testError = new HttpError(testStatusCode,testMsg,testdata)
 
-    expect(testError.statusCode).toBe(testStatus);
-    expect(testError.message).toBe(testMessage);
-    expect(testError.data).toBe(testData);
+    expect(testError.statusCode).toBe(testStatusCode);
+    expect(testError.message).toBe(testMsg);
+    expect(testError.data).toBe(testdata);
   });
 
   it('should contain undefined as data if no data is provided', () => {
-    const testStatus = 1;
-    const testMessage = 'Test';
+    const testStatusCode =202;
+    const testMsg = "test msg";
 
-    const testError = new HttpError(testStatus, testMessage);
 
-    expect(testError.statusCode).toBe(testStatus);
-    expect(testError.message).toBe(testMessage);
-    expect(testError.data).toBeUndefined();
+    const testError = new HttpError(testStatusCode,testMsg)
+
+    expect(testError.statusCode).toBe(testStatusCode);
+    expect(testError.message).toBe(testMsg);
+    expect(testError.data).not.toBeDefined();
   })
 });
 
 describe('class ValidationError', () => {
   it('should contain the provided message', () => {
-    const testMessage = 'test';
+      const testMsg = 'test';
+      const valError = new ValidationError(testMsg);
 
-    const testError = new ValidationError(testMessage);
-    
-    expect(testError.message).toBe(testMessage);
+      expect(valError.message).toBe(testMsg);
   })
 });

@@ -1,28 +1,36 @@
-import { it, expect } from 'vitest';
+import { it, expect, expectTypeOf } from 'vitest';
 
 import { validateNotEmpty } from './validation';
 
 it('should throw an error if an empty string is provided as a value', () => {
-  const testInput = '';
+    const text = '';
+    const testMsg = 'test';
 
-  const validationFn = () => validateNotEmpty(testInput);
+    let testFun = ()=>{
+      validateNotEmpty(text)
+    }
 
-  expect(validationFn).toThrow();
+    expect(testFun).toThrow()
 });
 
 it('should throw an error if an empty string is provided as a value', () => {
-  const testInput = '  ';
+  const text = '   ';
+  const testMsg = 'test';
 
-  const validationFn = () => validateNotEmpty(testInput);
+  let testFun = ()=>{
+    validateNotEmpty(text)
+  }
 
-  expect(validationFn).toThrow();
+  expect(testFun).toThrow()
 });
 
 it('should throw an error with the provided error message', () => {
-  const testInput = '';
-  const testErrorMessage = 'Test';
+  const text = '   ';
+  const testMsg = 'test';
 
-  const validationFn = () => validateNotEmpty(testInput, testErrorMessage);
+  let testFun = ()=>{
+    validateNotEmpty(text,testMsg)
+  }
 
-  expect(validationFn).toThrow(testErrorMessage);
+  expect(testFun).toThrow(testMsg)
 });
